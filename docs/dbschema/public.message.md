@@ -33,8 +33,8 @@
 ```mermaid
 erDiagram
 
-"public.message" }o--o| "public.user" : "FOREIGN KEY ("senderId") REFERENCES "user"(id)"
-"public.message" }o--o| "public.room" : "FOREIGN KEY ("roomId") REFERENCES room(id)"
+"public.message" }o--o| "public.user" : ""
+"public.message" }o--o| "public.room" : ""
 
 "public.message" {
   integer id
@@ -60,6 +60,7 @@ erDiagram
   varchar name
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
+  integer ownerId FK
 }
 ```
 

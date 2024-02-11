@@ -10,11 +10,13 @@
 | name | varchar |  | false |  |  |  |
 | created_at | timestamp without time zone | now() | false |  |  |  |
 | updated_at | timestamp without time zone | now() | false |  |  |  |
+| ownerId | integer |  | true |  | [public.user](public.user.md) |  |
 
 ## 制約一覧
 
 | 名前 | タイプ | 定義 |
 | ---- | ---- | ---------- |
+| FK_65283be59094a73fed31ffeee4e | FOREIGN KEY | FOREIGN KEY ("ownerId") REFERENCES "user"(id) |
 | PK_c6d46db005d623e691b2fbcba23 | PRIMARY KEY | PRIMARY KEY (id) |
 
 ## INDEX一覧
@@ -28,14 +30,16 @@
 ```mermaid
 erDiagram
 
-"public.user" }o--o| "public.room" : "FOREIGN KEY ("roomsId") REFERENCES room(id)"
-"public.message" }o--o| "public.room" : "FOREIGN KEY ("roomId") REFERENCES room(id)"
+"public.user" }o--o| "public.room" : ""
+"public.message" }o--o| "public.room" : ""
+"public.room" }o--o| "public.user" : ""
 
 "public.room" {
   integer id
   varchar name
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
+  integer ownerId FK
 }
 "public.user" {
   integer id

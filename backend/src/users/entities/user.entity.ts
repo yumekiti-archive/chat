@@ -27,12 +27,16 @@ export class User {
   password: string;
 
   @OneToMany(() => Message, message => message.sender)
-  @Field(() => [Message], { description: 'メッセージ' })
+  @Field(() => [Message], { description: 'メッセージ', nullable: true })
   messages: Message[];
 
   @ManyToOne(() => Room, room => room.participants)
-  @Field(() => [Room], { description: 'ルーム' })
+  @Field(() => [Room], { description: 'ルーム', nullable: true })
   rooms: Room[];
+
+  @OneToMany(() => Room, room => room.owner)
+  @Field(() => [Room], { description: '作成したルーム', nullable: true })
+  room: Room[];
 
   @CreateDateColumn()
   @Field(() => Date, { description: '作成日時' })

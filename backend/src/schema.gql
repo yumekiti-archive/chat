@@ -3,13 +3,28 @@
 # ------------------------------------------------------
 
 input CreateMessageInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """メッセージの内容"""
+  content: String!
+
+  """画像のURL"""
+  images: [String!]
+
+  """ルームのID"""
+  roomId: Int!
+
+  """送信者のID"""
+  senderId: Int!
 }
 
 input CreateRoomInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """ルーム名"""
+  name: String!
+
+  """作成者のID"""
+  ownerId: Int!
+
+  """参加者のID"""
+  participantsId: [Int!]
 }
 
 input CreateUserInput {
@@ -83,10 +98,13 @@ type Room {
   id: Int!
 
   """メッセージ"""
-  messages: [Message!]!
+  messages: [Message!]
 
   """ルーム名"""
   name: String!
+
+  """作成者"""
+  owner: User!
 
   """参加者"""
   participants: [User!]!
@@ -96,15 +114,31 @@ type Room {
 }
 
 input UpdateMessageInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """メッセージの内容"""
+  content: String
   id: Int!
+
+  """画像のURL"""
+  images: [String!]
+
+  """ルームのID"""
+  roomId: Int
+
+  """送信者のID"""
+  senderId: Int
 }
 
 input UpdateRoomInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
+
+  """ルーム名"""
+  name: String
+
+  """作成者のID"""
+  ownerId: Int
+
+  """参加者のID"""
+  participantsId: [Int!]
 }
 
 input UpdateUserInput {
@@ -136,7 +170,7 @@ type User {
   id: Int!
 
   """メッセージ"""
-  messages: [Message!]!
+  messages: [Message!]
 
   """名前"""
   name: String!
@@ -144,8 +178,11 @@ type User {
   """パスワード"""
   password: String!
 
+  """作成したルーム"""
+  room: [Room!]
+
   """ルーム"""
-  rooms: [Room!]!
+  rooms: [Room!]
 
   """更新日時"""
   updated_at: DateTime!

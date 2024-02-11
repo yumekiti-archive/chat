@@ -6,7 +6,7 @@
 
 | 名前 | タイプ | デフォルト値 | Nullable | 子テーブル | 親テーブル | コメント |
 | ---- | ------ | ------------ | -------- | ---------- | ---------- | -------- |
-| id | integer | nextval('user_id_seq'::regclass) | false | [public.message](public.message.md) |  |  |
+| id | integer | nextval('user_id_seq'::regclass) | false | [public.message](public.message.md) [public.room](public.room.md) |  |  |
 | icon | varchar |  | false |  |  |  |
 | name | varchar |  | false |  |  |  |
 | email | varchar |  | false |  |  |  |
@@ -35,8 +35,9 @@
 ```mermaid
 erDiagram
 
-"public.message" }o--o| "public.user" : "FOREIGN KEY ("senderId") REFERENCES "user"(id)"
-"public.user" }o--o| "public.room" : "FOREIGN KEY ("roomsId") REFERENCES room(id)"
+"public.message" }o--o| "public.user" : ""
+"public.room" }o--o| "public.user" : ""
+"public.user" }o--o| "public.room" : ""
 
 "public.user" {
   integer id
@@ -62,6 +63,7 @@ erDiagram
   varchar name
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
+  integer ownerId FK
 }
 ```
 
