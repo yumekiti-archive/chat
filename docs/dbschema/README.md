@@ -1,16 +1,21 @@
 # database
 
-## Tables
+## テーブル一覧
 
-| Name | Columns | Comment | Type |
+| 名前 | カラム一覧 | コメント | タイプ |
 | ---- | ------- | ------- | ---- |
-| [public.user](public.user.md) | 7 |  | BASE TABLE |
+| [public.user](public.user.md) | 8 |  | BASE TABLE |
+| [public.message](public.message.md) | 7 |  | BASE TABLE |
+| [public.room](public.room.md) | 4 |  | BASE TABLE |
 
-## Relations
+## ER図
 
 ```mermaid
 erDiagram
 
+"public.user" }o--o| "public.room" : "FOREIGN KEY ("roomsId") REFERENCES room(id)"
+"public.message" }o--o| "public.user" : "FOREIGN KEY ("senderId") REFERENCES "user"(id)"
+"public.message" }o--o| "public.room" : "FOREIGN KEY ("roomId") REFERENCES room(id)"
 
 "public.user" {
   integer id
@@ -18,6 +23,22 @@ erDiagram
   varchar name
   varchar email
   varchar password
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+  integer roomsId FK
+}
+"public.message" {
+  integer id
+  varchar content
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+  integer senderId FK
+  integer roomId FK
+  text images
+}
+"public.room" {
+  integer id
+  varchar name
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
 }

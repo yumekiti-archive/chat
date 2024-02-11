@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateMessageInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateRoomInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateUserInput {
   """メールアドレス"""
   email: String!
@@ -21,15 +31,80 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Message {
+  """メッセージの内容"""
+  content: String!
+
+  """作成日時"""
+  created_at: DateTime!
+
+  """ID"""
+  id: Int!
+
+  """画像のURL"""
+  images: [String!]!
+
+  """ルーム"""
+  room: Room!
+
+  """ユーザー"""
+  sender: User!
+
+  """更新日時"""
+  updated_at: DateTime!
+}
+
 type Mutation {
+  createMessage(createMessageInput: CreateMessageInput!): Message!
+  createRoom(createRoomInput: CreateRoomInput!): Room!
   createUser(createUserInput: CreateUserInput!): User!
+  removeMessage(id: Int!): Message!
+  removeRoom(id: Int!): Room!
   removeUser(id: Int!): User!
+  updateMessage(updateMessageInput: UpdateMessageInput!): Message!
+  updateRoom(updateRoomInput: UpdateRoomInput!): Room!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
+  message(id: Int!): Message!
+  messages: [Message!]!
+  room(id: Int!): Room!
+  rooms: [Room!]!
   user(id: Int!): User!
   users: [User!]!
+}
+
+type Room {
+  """作成日時"""
+  created_at: DateTime!
+
+  """ID"""
+  id: Int!
+
+  """メッセージ"""
+  messages: [Message!]!
+
+  """ルーム名"""
+  name: String!
+
+  """参加者"""
+  participants: [User!]!
+
+  """更新日時"""
+  updated_at: DateTime!
+}
+
+input UpdateMessageInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateRoomInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateUserInput {
@@ -60,11 +135,17 @@ type User {
   """ID"""
   id: Int!
 
+  """メッセージ"""
+  messages: [Message!]!
+
   """名前"""
   name: String!
 
   """パスワード"""
   password: String!
+
+  """ルーム"""
+  rooms: [Room!]!
 
   """更新日時"""
   updated_at: DateTime!

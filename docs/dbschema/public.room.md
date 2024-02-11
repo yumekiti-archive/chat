@@ -1,4 +1,4 @@
-# public.user
+# public.room
 
 ## 概要
 
@@ -6,38 +6,37 @@
 
 | 名前 | タイプ | デフォルト値 | Nullable | 子テーブル | 親テーブル | コメント |
 | ---- | ------ | ------------ | -------- | ---------- | ---------- | -------- |
-| id | integer | nextval('user_id_seq'::regclass) | false | [public.message](public.message.md) |  |  |
-| icon | varchar |  | false |  |  |  |
+| id | integer | nextval('room_id_seq'::regclass) | false | [public.user](public.user.md) [public.message](public.message.md) |  |  |
 | name | varchar |  | false |  |  |  |
-| email | varchar |  | false |  |  |  |
-| password | varchar |  | false |  |  |  |
 | created_at | timestamp without time zone | now() | false |  |  |  |
 | updated_at | timestamp without time zone | now() | false |  |  |  |
-| roomsId | integer |  | true |  | [public.room](public.room.md) |  |
 
 ## 制約一覧
 
 | 名前 | タイプ | 定義 |
 | ---- | ---- | ---------- |
-| PK_cace4a159ff9f2512dd42373760 | PRIMARY KEY | PRIMARY KEY (id) |
-| UQ_e12875dfb3b1d92d7d7c5377e22 | UNIQUE | UNIQUE (email) |
-| FK_61c6dfcd7aade4f490eee74613f | FOREIGN KEY | FOREIGN KEY ("roomsId") REFERENCES room(id) |
+| PK_c6d46db005d623e691b2fbcba23 | PRIMARY KEY | PRIMARY KEY (id) |
 
 ## INDEX一覧
 
 | 名前 | 定義 |
 | ---- | ---------- |
-| PK_cace4a159ff9f2512dd42373760 | CREATE UNIQUE INDEX "PK_cace4a159ff9f2512dd42373760" ON public."user" USING btree (id) |
-| UQ_e12875dfb3b1d92d7d7c5377e22 | CREATE UNIQUE INDEX "UQ_e12875dfb3b1d92d7d7c5377e22" ON public."user" USING btree (email) |
+| PK_c6d46db005d623e691b2fbcba23 | CREATE UNIQUE INDEX "PK_c6d46db005d623e691b2fbcba23" ON public.room USING btree (id) |
 
 ## ER図
 
 ```mermaid
 erDiagram
 
-"public.message" }o--o| "public.user" : "FOREIGN KEY ("senderId") REFERENCES "user"(id)"
 "public.user" }o--o| "public.room" : "FOREIGN KEY ("roomsId") REFERENCES room(id)"
+"public.message" }o--o| "public.room" : "FOREIGN KEY ("roomId") REFERENCES room(id)"
 
+"public.room" {
+  integer id
+  varchar name
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+}
 "public.user" {
   integer id
   varchar icon
@@ -56,12 +55,6 @@ erDiagram
   integer senderId FK
   integer roomId FK
   text images
-}
-"public.room" {
-  integer id
-  varchar name
-  timestamp_without_time_zone created_at
-  timestamp_without_time_zone updated_at
 }
 ```
 

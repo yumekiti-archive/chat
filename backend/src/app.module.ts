@@ -4,6 +4,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { RoomsModule } from './rooms/rooms.module';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       sortSchema: true,
     }),
     UsersModule,
+    RoomsModule,
+    MessagesModule,
   ],
 })
 export class AppModule {}
