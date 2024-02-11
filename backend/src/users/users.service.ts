@@ -2,47 +2,43 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
-  create(createUserInput: CreateUserInput): string {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ) {}
+
+  async create(createUserInput: CreateUserInput): Promise<User> {
+    return await this.usersRepository.save(createUserInput);
   }
 
-  findAll(): User[] {
-    // 仮のユーザーデータを返す
-    return [
-      {
-        id: 1,
-        icon: 'https://example.com/icon1.png',
-        name: 'user1',
-        email: 'user1@example.com',
-        password: 'password1',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 2,
-        icon: 'https://example.com/icon2.png',
-        name: 'user2',
-        email: 'user2@example.com',
-        password: 'password2',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-    ];
+  async findAll(): Promise<User[]> {
+    return await this.usersRepository.find();
   }
 
-  findOne(id: number): string {
-    return `This action returns a #${id} user`;
+  async findOne(id: number): Promise<User> {
+    return await this.usersRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserInput: UpdateUserInput): string {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserInput: UpdateUserInput): Promise<User> {
+    return await this.usersRepository.findOneBy({ id }).then((user) => {
+      if (!user) return;
+      return this.usersRepository.save({
+        ...user,
+        ...updateUserInput,
+      });
+    });
   }
 
-  remove(id: number): string {
-    return `This action removes a #${id} user`;
+  async remove(id: number): Promise<User> {
+    return await this.usersRepository.findOneBy({ id }).then((user) => {
+      if (!user) return;
+      return this.usersRepository.remove(user);
+    });
   }
 }
 

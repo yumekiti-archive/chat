@@ -3,8 +3,17 @@
 # ------------------------------------------------------
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """メールアドレス"""
+  email: String!
+
+  """アイコン"""
+  icon: String!
+
+  """名前"""
+  name: String!
+
+  """パスワード"""
+  password: String!
 }
 
 """
@@ -24,9 +33,18 @@ type Query {
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """メールアドレス"""
+  email: String
+
+  """アイコン"""
+  icon: String
   id: Int!
+
+  """名前"""
+  name: String
+
+  """パスワード"""
+  password: String
 }
 
 type User {

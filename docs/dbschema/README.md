@@ -4,6 +4,7 @@
 
 | Name | Columns | Comment | Type |
 | ---- | ------- | ------- | ---- |
+| [public.user](public.user.md) | 7 |  | BASE TABLE |
 
 ## Relations
 
@@ -11,6 +12,15 @@
 erDiagram
 
 
+"public.user" {
+  integer id
+  varchar icon
+  varchar name
+  varchar email
+  varchar password
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+}
 ```
 
 ---
