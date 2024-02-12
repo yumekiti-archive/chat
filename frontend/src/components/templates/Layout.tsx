@@ -3,6 +3,7 @@ import Logo from "@/components/atoms/Logo"
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeProvider } from "@/components/theme-provider"
+import RoomList from "@/components/organisms/RoomList"
 
 type Prop = {
   children: ReactNode

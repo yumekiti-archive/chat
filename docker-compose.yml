@@ -44,3 +44,17 @@ services:
     command: doc --force
     depends_on:
       - db
+
+  gql:
+    image: node:20-alpine
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: >
+      sh -c "
+        sleep 10 &&
+        yarn &&
+        yarn graphql-codegen --watch --verbose
+      "
+    depends_on:
+      - backend

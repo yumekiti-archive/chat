@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 const Component = () => {
   return (
-    <div>Logo</div>
+    <Link to="/">
+      <div>Logo</div>
+    </Link>
   )
 }
 
