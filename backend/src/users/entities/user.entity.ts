@@ -30,13 +30,13 @@ export class User {
   @Field(() => [Message], { description: 'メッセージ', nullable: true })
   messages: Message[];
 
-  @ManyToOne(() => Room, room => room.participants)
-  @Field(() => [Room], { description: 'ルーム', nullable: true })
-  rooms: Room[];
-
   @OneToMany(() => Room, room => room.owner)
-  @Field(() => [Room], { description: '作成したルーム', nullable: true })
-  room: Room[];
+  @Field(() => [Room], { description: '所有しているルーム', nullable: true })
+  ownedRooms: Room[];
+
+  @ManyToOne(() => Room, room => room.participants)
+  @Field(() => [Room], { description: '参加しているルーム', nullable: true })
+  rooms: Room[];
 
   @CreateDateColumn()
   @Field(() => Date, { description: '作成日時' })

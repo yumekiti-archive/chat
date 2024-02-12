@@ -103,7 +103,7 @@ type Room {
   """ルーム名"""
   name: String!
 
-  """作成者"""
+  """オーナー"""
   owner: User!
 
   """参加者"""
@@ -175,13 +175,13 @@ type User {
   """名前"""
   name: String!
 
+  """所有しているルーム"""
+  ownedRooms: [Room!]
+
   """パスワード"""
   password: String!
 
-  """作成したルーム"""
-  room: [Room!]
-
-  """ルーム"""
+  """参加しているルーム"""
   rooms: [Room!]
 
   """更新日時"""

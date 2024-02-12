@@ -14,8 +14,8 @@ export class Room {
   @Field(() => String, { description: 'ルーム名' })
   name: string;
 
-  @ManyToOne(() => User, user => user.room)
-  @Field(() => User, { description: '作成者' })
+  @ManyToOne(() => User, user => user.ownedRooms)
+  @Field(() => User, { description: 'オーナー' })
   owner: User;
 
   @OneToMany(() => User, user => user.rooms)
