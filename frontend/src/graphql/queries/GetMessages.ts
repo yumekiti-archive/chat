@@ -9,4 +9,4 @@ export const GET_MESSAGES = gql`
       created_at
     }
   }
-`
+`;

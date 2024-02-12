@@ -1,6 +1,6 @@
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DesktopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "@/components/theme-provider"
+import { useTheme } from "@/components/theme-provider";
 
 const Component = () => {
   const { setTheme } = useTheme();
@@ -19,7 +19,7 @@ const Component = () => {
         </TabsTrigger>
       </TabsList>
     </Tabs>
-  )
-}
+  );
+};
 
 export default Component;

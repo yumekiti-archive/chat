@@ -1,10 +1,17 @@
-import { useQuery } from '@apollo/client';
-import { GET_ROOMS } from '@/graphql/queries/GetRooms';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton"
-import { Button } from "@/components/ui/button"
-import { Link } from 'react-router-dom';
-import RoomCreationDialog from './RoomCreationDialog';
+import { useQuery } from "@apollo/client";
+import { GET_ROOMS } from "@/graphql/queries/GetRooms";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import RoomCreationDialog from "./RoomCreationDialog";
 
 const Component = () => {
   const { loading, error, data } = useQuery(GET_ROOMS);
@@ -38,7 +45,7 @@ const Component = () => {
         <RoomCreationDialog />
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
 export default Component;

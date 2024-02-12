@@ -7,17 +7,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { CREATE_ROOM } from '@/graphql/mutations/CreateRoom';
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_ROOM } from "@/graphql/mutations/CreateRoom";
 
 const Component = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [createRoom] = useMutation(CREATE_ROOM);
 
   const handleCreateRoom = () => {
@@ -27,8 +27,8 @@ const Component = () => {
       })
       .catch((err) => {
         console.error(err);
-      })
-  }
+      });
+  };
 
   return (
     <Dialog>
@@ -41,9 +41,7 @@ const Component = () => {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create Room</DialogTitle>
-          <DialogDescription>
-            部屋を作成
-          </DialogDescription>
+          <DialogDescription>部屋を作成</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -70,7 +68,7 @@ const Component = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;

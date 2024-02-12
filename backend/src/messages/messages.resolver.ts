@@ -9,7 +9,9 @@ export class MessagesResolver {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Mutation(() => Message)
-  createMessage(@Args('createMessageInput') createMessageInput: CreateMessageInput) {
+  createMessage(
+    @Args('createMessageInput') createMessageInput: CreateMessageInput,
+  ) {
     return this.messagesService.create(createMessageInput);
   }
 
@@ -24,8 +26,13 @@ export class MessagesResolver {
   }
 
   @Mutation(() => Message)
-  updateMessage(@Args('updateMessageInput') updateMessageInput: UpdateMessageInput) {
-    return this.messagesService.update(updateMessageInput.id, updateMessageInput);
+  updateMessage(
+    @Args('updateMessageInput') updateMessageInput: UpdateMessageInput,
+  ) {
+    return this.messagesService.update(
+      updateMessageInput.id,
+      updateMessageInput,
+    );
   }
 
   @Mutation(() => Message)

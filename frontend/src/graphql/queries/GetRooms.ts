@@ -8,4 +8,4 @@ export const GET_ROOMS = gql`
       created_at
     }
   }
-`
+`;

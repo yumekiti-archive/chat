@@ -1,5 +1,13 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { OneToMany, ManyToOne, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  OneToMany,
+  ManyToOne,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Message } from '../../messages/entities/message.entity';
 
@@ -14,15 +22,15 @@ export class Room {
   @Field(() => String, { description: 'ルーム名' })
   name: string;
 
-  @ManyToOne(() => User, user => user.ownedRooms)
+  @ManyToOne(() => User, (user) => user.ownedRooms)
   @Field(() => User, { description: 'オーナー' })
   owner: User;
 
-  @OneToMany(() => User, user => user.rooms)
+  @OneToMany(() => User, (user) => user.rooms)
   @Field(() => [User], { description: '参加者' })
   participants: User[];
 
-  @OneToMany(() => Message, message => message.room)
+  @OneToMany(() => Message, (message) => message.room)
   @Field(() => [Message], { description: 'メッセージ', nullable: true })
   messages: Message[];
 

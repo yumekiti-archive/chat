@@ -1,13 +1,13 @@
-import { FC, ReactNode } from "react"
-import Logo from "@/components/atoms/Logo"
-import ThemeSwitcher from "@/components/molecules/ThemeSwitcher"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ThemeProvider } from "@/components/theme-provider"
-import RoomList from "@/components/organisms/RoomList"
+import { FC, ReactNode } from "react";
+import Logo from "@/components/atoms/Logo";
+import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ThemeProvider } from "@/components/theme-provider";
+import RoomList from "@/components/organisms/RoomList";
 
 type Prop = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 const Component: FC<Prop> = ({ children }) => {
   return (
@@ -26,7 +26,7 @@ const Component: FC<Prop> = ({ children }) => {
         <main className="flex w-full flex-grow">{children}</main>
       </div>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;

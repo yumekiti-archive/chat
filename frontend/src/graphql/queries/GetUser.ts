@@ -12,4 +12,4 @@ export const GET_USER = gql`
       updated_at
     }
   }
-`
+`;
