@@ -11,7 +11,7 @@ export class User {
   id: number;
 
   @Column()
-  @Field(() => String, { description: 'アイコン' })
+  @Field(() => String, { description: 'アイコン', nullable: true })
   icon: string;
 
   @Column()

@@ -2,9 +2,6 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateUserInput {
-  @Field(() => String, { description: 'アイコン' })
-  icon: string;
-
   @Field(() => String, { description: '名前' })
   name: string;
 
