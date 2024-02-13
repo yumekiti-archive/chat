@@ -6,7 +6,7 @@
 
 | 名前 | タイプ | デフォルト値 | Nullable | 子テーブル | 親テーブル | コメント |
 | ---- | ------ | ------------ | -------- | ---------- | ---------- | -------- |
-| id | integer | nextval('room_id_seq'::regclass) | false | [public.user](public.user.md) [public.message](public.message.md) |  |  |
+| id | integer | nextval('room_id_seq'::regclass) | false | [public.message](public.message.md) [public.user](public.user.md) |  |  |
 | name | varchar |  | false |  |  |  |
 | created_at | timestamp without time zone | now() | false |  |  |  |
 | updated_at | timestamp without time zone | now() | false |  |  |  |
@@ -16,8 +16,8 @@
 
 | 名前 | タイプ | 定義 |
 | ---- | ---- | ---------- |
-| FK_65283be59094a73fed31ffeee4e | FOREIGN KEY | FOREIGN KEY ("ownerId") REFERENCES "user"(id) |
 | PK_c6d46db005d623e691b2fbcba23 | PRIMARY KEY | PRIMARY KEY (id) |
+| FK_65283be59094a73fed31ffeee4e | FOREIGN KEY | FOREIGN KEY ("ownerId") REFERENCES "user"(id) |
 
 ## INDEX一覧
 
@@ -30,8 +30,8 @@
 ```mermaid
 erDiagram
 
-"public.user" }o--o| "public.room" : ""
 "public.message" }o--o| "public.room" : ""
+"public.user" }o--o| "public.room" : ""
 "public.room" }o--o| "public.user" : ""
 
 "public.room" {
@@ -40,6 +40,15 @@ erDiagram
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
   integer ownerId FK
+}
+"public.message" {
+  integer id
+  text images
+  varchar content
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+  integer senderId FK
+  integer roomId FK
 }
 "public.user" {
   integer id
@@ -50,15 +59,6 @@ erDiagram
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
   integer roomsId FK
-}
-"public.message" {
-  integer id
-  varchar content
-  timestamp_without_time_zone created_at
-  timestamp_without_time_zone updated_at
-  integer senderId FK
-  integer roomId FK
-  text images
 }
 ```
 

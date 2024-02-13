@@ -74,18 +74,13 @@ const Component = () => {
               <CardTitle>Chat Room</CardTitle>
               <CardDescription>チャットルーム</CardDescription>
             </CardHeader>
-            <CardContent
-              className="h-[60vh] rounded-md overflow-y-auto"
-              id="chat-room"
-            >
+            <CardContent className="h-[60vh] rounded-md">
               {!isRoomSelected ? (
                 <div className="flex justify-center items-center h-full">
                   <span>部屋を選んでください</span>
                 </div>
               ) : (
-                <div className="w-full md:w-10/12 mx-auto">
-                  <ChatMessageList roomId={parseInt(id as string)} />
-                </div>
+                <ChatMessageList roomId={parseInt(id as string)} />
               )}
             </CardContent>
             {isRoomSelected && (

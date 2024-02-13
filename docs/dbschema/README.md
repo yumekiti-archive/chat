@@ -4,20 +4,36 @@
 
 | 名前 | カラム一覧 | コメント | タイプ |
 | ---- | ------- | ------- | ---- |
-| [public.user](public.user.md) | 8 |  | BASE TABLE |
-| [public.message](public.message.md) | 7 |  | BASE TABLE |
 | [public.room](public.room.md) | 5 |  | BASE TABLE |
+| [public.message](public.message.md) | 7 |  | BASE TABLE |
+| [public.user](public.user.md) | 8 |  | BASE TABLE |
 
 ## ER図
 
 ```mermaid
 erDiagram
 
-"public.user" }o--o| "public.room" : ""
-"public.message" }o--o| "public.user" : ""
-"public.message" }o--o| "public.room" : ""
 "public.room" }o--o| "public.user" : ""
+"public.message" }o--o| "public.room" : ""
+"public.message" }o--o| "public.user" : ""
+"public.user" }o--o| "public.room" : ""
 
+"public.room" {
+  integer id
+  varchar name
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+  integer ownerId FK
+}
+"public.message" {
+  integer id
+  text images
+  varchar content
+  timestamp_without_time_zone created_at
+  timestamp_without_time_zone updated_at
+  integer senderId FK
+  integer roomId FK
+}
 "public.user" {
   integer id
   varchar icon
@@ -27,22 +43,6 @@ erDiagram
   timestamp_without_time_zone created_at
   timestamp_without_time_zone updated_at
   integer roomsId FK
-}
-"public.message" {
-  integer id
-  varchar content
-  timestamp_without_time_zone created_at
-  timestamp_without_time_zone updated_at
-  integer senderId FK
-  integer roomId FK
-  text images
-}
-"public.room" {
-  integer id
-  varchar name
-  timestamp_without_time_zone created_at
-  timestamp_without_time_zone updated_at
-  integer ownerId FK
 }
 ```
 
